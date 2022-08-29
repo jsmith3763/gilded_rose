@@ -2,7 +2,7 @@ const { Shop, Item } = require("../src/gilded_rose");
 
 describe("Regular Items", function () {
   test("Should be able to create new item within shop", function () {
-    const gildedRose = new Shop([new Item("testItem", 0, 0)]);
+    const gildedRose = new Shop([new Item("testItem", 10, 20)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("testItem");
   });
