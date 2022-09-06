@@ -36,6 +36,7 @@ describe("Regular Items", function () {
   test("Regular items should never be created with a negative value", () => {
     const gildedRose = new Shop([new Item("Ale", 0, -10)]);
     const items = gildedRose.updateQuality();
+    console.log(items[0].quality)
     expect(items[0].quality).toBeFalsy();
   })
 

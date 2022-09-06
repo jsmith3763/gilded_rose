@@ -15,17 +15,18 @@
 
 class Item {
   constructor(name, sellIn, quality) {
-    if (name === "Sulfuras, Hand of Ragnaros" && quality === 80) {
-      this.name = name;
-      this.sellIn = sellIn;
-      this.quality = quality;
-    } else if (quality > 50 || quality < 0 || name === "Sulfuras, Hand of Ragnaros" && quality != 80) {
+    this.name = name;
+    this.sellIn = sellIn;
+    this.quality = quality;
+  }
+
+  checkIfItemIsValid() {
+    if (this.name === "Sulfuras, Hand of Ragnaros" && this.quality === 80) {
+      return true;
+    } else if (this.quality > 50 || this.quality < 0 || this.name === "Sulfuras, Hand of Ragnaros" && this.quality != 80) {
       return false;
-    } else {
-      this.name = name;
-      this.sellIn = sellIn;
-      this.quality = quality;
     }
+    return true;
   }
 
   updateRegularItem() {
@@ -71,9 +72,16 @@ class Shop {
     const sulfuras = "Sulfuras, Hand of Ragnaros";
     const agedBrie = "Aged Brie";
 
+
+
     for (let currentIndex = 0; currentIndex < this.items.length; currentIndex++) {
       let currentItem = this.items[currentIndex]
       let currentItemName = this.items[currentIndex].name;
+
+      if (!currentItem.checkIfItemIsValid()) {
+        currentItem.quality = false;
+        break;
+      }
 
       if (currentItemName != agedBrie && currentItemName != sulfuras && currentItemName != backStagePass) {
         currentItem.updateRegularItem();
